@@ -2,11 +2,11 @@
  * Copyright 2016-2018 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
  */
 
-package kotlinx.coroutines.experimental
+package kotlinx.coroutines
 
 import java.io.*
 import java.util.concurrent.*
-import kotlin.coroutines.experimental.*
+import kotlin.coroutines.*
 
 /**
  * [CoroutineDispatcher] that has underlying [Executor] for dispatching tasks.
@@ -18,7 +18,7 @@ import kotlin.coroutines.experimental.*
 public abstract class ExecutorCoroutineDispatcher: CloseableCoroutineDispatcher(), Closeable {
     /**
      * Closes this coroutine dispatcher and shuts down its executor.
-     * 
+     *
      * It may throw an exception if this dispatcher is global and cannot be closed.
      */
     public abstract override fun close()

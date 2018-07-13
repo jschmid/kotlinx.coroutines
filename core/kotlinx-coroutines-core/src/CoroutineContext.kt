@@ -2,12 +2,12 @@
  * Copyright 2016-2018 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
  */
 
-package kotlinx.coroutines.experimental
+package kotlinx.coroutines
 
-import kotlinx.coroutines.experimental.internal.*
-import kotlinx.coroutines.experimental.scheduling.*
+import kotlinx.coroutines.internal.*
+import kotlinx.coroutines.scheduling.*
 import java.util.concurrent.atomic.*
-import kotlin.coroutines.experimental.*
+import kotlin.coroutines.*
 
 private val COROUTINE_ID = AtomicLong()
 
@@ -34,7 +34,7 @@ internal val useCoroutinesScheduler = systemProp(COROUTINES_SCHEDULER_PROPERTY_N
 @Deprecated(
     message = "Use Dispatchers.Default",
     replaceWith = ReplaceWith("Dispatchers.Default",
-        imports = ["kotlinx.coroutines.experimental.Dispatchers"]))
+        imports = ["kotlinx.coroutines.Dispatchers"]))
 public actual val DefaultDispatcher: CoroutineDispatcher
     get() = Dispatchers.Default
 
@@ -49,7 +49,7 @@ internal actual fun createDefaultDispatcher(): CoroutineDispatcher =
 @Deprecated(
     message = "Use Dispatchers.IO",
     replaceWith = ReplaceWith("Dispatchers.IO",
-        imports = ["kotlinx.coroutines.experimental.*"]))
+        imports = ["kotlinx.coroutines.*"]))
 public val IO: CoroutineDispatcher
     get() = Dispatchers.IO
 

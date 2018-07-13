@@ -1,15 +1,15 @@
 /*
  * Copyright 2016-2018 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
  */
-package kotlinx.coroutines.experimental.time
+package kotlinx.coroutines.time
 
-import kotlinx.coroutines.experimental.CoroutineScope
-import kotlinx.coroutines.experimental.selects.SelectBuilder
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.selects.SelectBuilder
 import java.time.Duration
 import java.util.concurrent.TimeUnit
 
 /**
- * "java.time" adapter method for [kotlinx.coroutines.experimental.delay]
+ * "java.time" adapter method for [kotlinx.coroutines.delay]
  */
 public suspend fun delay(duration: Duration) =
     kotlinx.coroutines.experimental.delay(duration.toMillis())
@@ -29,7 +29,7 @@ public suspend fun <R> SelectBuilder<R>.onTimeout0(duration: Duration, block: su
     onTimeout(duration.toMillis(), block)
 
 /**
- * "java.time" adapter method for [kotlinx.coroutines.experimental.withTimeout]
+ * "java.time" adapter method for [kotlinx.coroutines.withTimeout]
  */
 public suspend fun <T> withTimeout(duration: Duration, block: suspend CoroutineScope.() -> T): T =
     kotlinx.coroutines.experimental.withTimeout(duration.toMillis(), block)
@@ -42,7 +42,7 @@ public suspend fun <T> withTimeout(duration: Duration, block: suspend () -> T): 
     kotlinx.coroutines.experimental.withTimeout(duration.toNanos(), TimeUnit.NANOSECONDS) { block() }
 
 /**
- * "java.time" adapter method for [kotlinx.coroutines.experimental.withTimeoutOrNull]
+ * "java.time" adapter method for [kotlinx.coroutines.withTimeoutOrNull]
  */
 public suspend fun <T> withTimeoutOrNull(duration: Duration, block: suspend CoroutineScope.() -> T): T? =
     kotlinx.coroutines.experimental.withTimeoutOrNull(duration.toMillis(), block)
