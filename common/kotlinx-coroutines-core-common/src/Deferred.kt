@@ -2,11 +2,14 @@
  * Copyright 2016-2018 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
  */
 
+@file:UseExperimental(ExperimentalTypeInference::class)
+
 package kotlinx.coroutines
 
 import kotlinx.coroutines.intrinsics.*
 import kotlinx.coroutines.selects.*
 import kotlin.coroutines.*
+import kotlin.experimental.*
 
 /**
  * Deferred value is a non-blocking cancellable future &mdash; it is a [Job] that has a result.
@@ -99,6 +102,7 @@ public interface Deferred<out T> : Job {
 /**
  * @suppress **Deprecated**: onCompletion parameter is deprecated.
  */
+@BuilderInference
 @Deprecated("onCompletion parameter is deprecated")
 public fun <T> CoroutineScope.async(
     context: CoroutineContext = EmptyCoroutineContext,

@@ -89,7 +89,7 @@ private val pulseTimer by lazy {
 /**
  * Suspends coroutine until next JavaFx pulse and returns time of the pulse on resumption.
  * If the [Job] of the current coroutine is completed while this suspending function is waiting, this function
- * immediately resumes with [CancellationException][kotlinx.coroutines.experimental.CancellationException].
+ * immediately resumes with [CancellationException][kotlinx.coroutines.CancellationException].
  */
 public suspend fun awaitPulse(): Long = suspendCancellableCoroutine { cont ->
     pulseTimer.onNext(cont)

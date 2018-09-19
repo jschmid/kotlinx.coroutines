@@ -9,6 +9,7 @@ import org.junit.Test
 import java.lang.Runnable
 import java.util.concurrent.*
 import java.util.concurrent.CountDownLatch
+import kotlin.coroutines.*
 
 class CoroutineSchedulerTest : TestBase() {
 

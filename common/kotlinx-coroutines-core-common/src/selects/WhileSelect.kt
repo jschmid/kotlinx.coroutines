@@ -4,7 +4,7 @@
 
 package kotlinx.coroutines.selects
 
-import kotlinx.coroutines.experimental.*
+import kotlinx.coroutines.*
 
 /**
  * Loops while [select] expression returns `true`.

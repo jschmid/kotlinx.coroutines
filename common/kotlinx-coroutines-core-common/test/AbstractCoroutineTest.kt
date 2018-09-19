@@ -4,6 +4,7 @@
 
 package kotlinx.coroutines
 
+import kotlin.coroutines.*
 import kotlin.test.*
 
 class AbstractCoroutineTest : TestBase() {

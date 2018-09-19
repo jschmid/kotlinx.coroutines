@@ -17,7 +17,7 @@ import kotlin.coroutines.*
  * Dispatches execution onto Android main thread and provides native [delay][Delay.delay] support.
  */
 public val Dispatchers.Main: HandlerDispatcher
-    get() = kotlinx.coroutines.experimental.android.Main
+    get() = kotlinx.coroutines.android.Main
 
 /**
  * Dispatches execution onto Android [Handler].

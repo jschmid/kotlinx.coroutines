@@ -2,12 +2,15 @@
  * Copyright 2016-2018 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
  */
 
+@file:UseExperimental(ExperimentalTypeInference::class)
+
 package kotlinx.coroutines.future
 
 import kotlinx.coroutines.*
 import java.util.concurrent.*
 import java.util.function.*
 import kotlin.coroutines.*
+import kotlin.experimental.*
 
 /**
  * Starts new coroutine and returns its result as an implementation of [CompletableFuture].
@@ -30,6 +33,7 @@ import kotlin.coroutines.*
  * @param start coroutine start option. The default value is [CoroutineStart.DEFAULT].
  * @param block the coroutine code.
  */
+@BuilderInference
 public fun <T> CoroutineScope.future(
     context: CoroutineContext = EmptyCoroutineContext,
     start: CoroutineStart = CoroutineStart.DEFAULT,
@@ -125,7 +129,7 @@ private class CompletableFutureCoroutine<T>(
 ) : CompletableFuture<T>(), Continuation<T>, CoroutineScope {
     override val coroutineContext: CoroutineContext get() = context
     override val isActive: Boolean get() = context[Job]!!.isActive
-    override fun resumeWith(result: SuccessOrFailure<T>) {
+    override fun resumeWith(result: Result<T>) {
         result
             .onSuccess { complete(it) }
             .onFailure { completeExceptionally(it) }
@@ -192,7 +196,7 @@ public suspend fun <T> CompletableFuture<T>.await(): T =
  *
  * This suspending function is cancellable.
  * If the [Job] of the current coroutine is cancelled or completed while this suspending function is waiting, this function
- * stops waiting for the completion stage and immediately resumes with [CancellationException][kotlinx.coroutines.experimental.CancellationException].
+ * stops waiting for the completion stage and immediately resumes with [CancellationException][kotlinx.coroutines.CancellationException].
  * This method is intended to be used with one-shot futures, so on coroutine cancellation completion stage is cancelled as well if it is instance of [CompletableFuture].
  * If cancelling given stage is undesired, `stage.asDeferred().await()` should be used instead.
  */

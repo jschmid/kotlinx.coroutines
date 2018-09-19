@@ -4,7 +4,7 @@
 
 package kotlinx.coroutines
 
-import kotlinx.coroutines.experimental.internal.*
+import kotlinx.coroutines.internal.*
 import org.junit.*
 import kotlinx.coroutines.scheduling.*
 import java.util.concurrent.atomic.*

@@ -8,6 +8,9 @@ import com.google.common.util.concurrent.*
 import kotlinx.coroutines.*
 import java.util.concurrent.*
 import kotlin.coroutines.*
+import kotlin.experimental.*
+
+@UseExperimental(ExperimentalTypeInference::class)
 
 /**
  * Starts new coroutine and returns its results an an implementation of [ListenableFuture].
@@ -30,6 +33,7 @@ import kotlin.coroutines.*
  * @param start coroutine start option. The default value is [CoroutineStart.DEFAULT].
  * @param block the coroutine code.
  */
+@BuilderInference
 public fun <T> CoroutineScope.future(
     context: CoroutineContext = EmptyCoroutineContext,
     start: CoroutineStart = CoroutineStart.DEFAULT,
@@ -123,7 +127,7 @@ private class ListenableFutureCoroutine<T>(
 ) : AbstractFuture<T>(), Continuation<T>, CoroutineScope {
     override val coroutineContext: CoroutineContext get() = context
     override val isActive: Boolean get() = context[Job]!!.isActive
-    override fun resumeWith(result: SuccessOrFailure<T>) {
+    override fun resumeWith(result: Result<T>) {
         result
             .onSuccess { set(it) }
             .onFailure { setException(it) }

@@ -4,7 +4,7 @@
 
 package kotlinx.coroutines.channels
 
-import kotlinx.coroutines.experimental.*
+import kotlinx.coroutines.*
 
 /**
  * Rendezvous channel. This channel does not have any buffer at all. An element is transferred from sender

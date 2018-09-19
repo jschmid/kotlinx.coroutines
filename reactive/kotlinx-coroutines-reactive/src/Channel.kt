@@ -5,6 +5,7 @@
 package kotlinx.coroutines.reactive
 
 import kotlinx.atomicfu.*
+import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.*
 import org.reactivestreams.*
 

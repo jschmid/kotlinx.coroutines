@@ -22,13 +22,13 @@ class ArrayChannelStressTest(private val capacity: Int) : TestBase() {
     fun testStress() = runTest {
         val n = 100_000 * stressTestMultiplier
         val q = Channel<Int>(capacity)
-        val sender = launch(kotlin.coroutines.experimental.coroutineContext) {
+        val sender = launch(coroutineContext) {
             for (i in 1..n) {
                 q.send(i)
             }
             expect(2)
         }
-        val receiver = launch(kotlin.coroutines.coroutineContext) {
+        val receiver = launch(coroutineContext) {
             for (i in 1..n) {
                 val next = q.receive()
                 check(next == i)

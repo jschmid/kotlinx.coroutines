@@ -47,10 +47,7 @@ open class CancellableContinuationBenchmark {
         override val context: CoroutineContext
             get() = EmptyCoroutineContext
 
-        override fun resume(value: Int) {
-        }
-
-        override fun resumeWithException(exception: Throwable) {
+        override fun resumeWith(result: Result<Int>) {
         }
     }
 }

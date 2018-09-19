@@ -4,12 +4,8 @@
 
 package kotlinx.coroutines
 
-import kotlinx.coroutines.internal.*
-import kotlinx.coroutines.intrinsics.*
 import kotlinx.coroutines.selects.*
 import kotlinx.coroutines.timeunit.*
-import kotlin.coroutines.*
-import kotlin.coroutines.intrinsics.*
 
 @Deprecated(level = DeprecationLevel.HIDDEN, message = "binary compatibility")
 public suspend fun <T> withTimeout(time: Int, block: suspend CoroutineScope.() -> T): T =

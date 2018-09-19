@@ -62,6 +62,7 @@ class SingleTest : TestBase() {
             expect(4)
             yield() // back to main, will get cancelled
             expectUnreached()
+
         }
         expect(2)
         // nothing is called on a disposed rx2 single

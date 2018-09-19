@@ -853,7 +853,7 @@ internal open class JobSupport constructor(active: Boolean) : Job, ChildJob, Sel
         }
     }
 
-    public final override val children: Sequence<Job> get() = buildSequence {
+    public final override val children: Sequence<Job> get() = sequence {
         val state = this@JobSupport.state
         when (state) {
             is ChildHandleNode -> yield(state.childJob)

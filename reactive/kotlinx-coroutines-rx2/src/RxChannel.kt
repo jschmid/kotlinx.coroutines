@@ -7,7 +7,7 @@ package kotlinx.coroutines.rx2
 import io.reactivex.*
 import io.reactivex.disposables.*
 import kotlinx.coroutines.channels.*
-import kotlinx.experimental.*
+import kotlinx.coroutines.*
 
 /**
  * Subscribes to this [MaybeSource] and returns a channel to receive elements emitted by it.

@@ -4,14 +4,17 @@
 
 @file:JvmMultifileClass
 @file:JvmName("BuildersKt")
+@file:UseExperimental(ExperimentalTypeInference::class)
 
 package kotlinx.coroutines
 
 import kotlinx.atomicfu.*
 import kotlinx.coroutines.internal.*
 import kotlinx.coroutines.intrinsics.*
+import kotlinx.coroutines.selects.*
 import kotlin.coroutines.*
 import kotlin.coroutines.intrinsics.*
+import kotlin.experimental.*
 
 // --------------- launch ---------------
 
@@ -40,6 +43,7 @@ import kotlin.coroutines.intrinsics.*
  * @param start coroutine start option. The default value is [CoroutineStart.DEFAULT].
  * @param block the coroutine code which will be invoked in the context of the provided scope.
  **/
+@BuilderInference
 public fun CoroutineScope.launch(
     context: CoroutineContext = EmptyCoroutineContext,
     start: CoroutineStart = CoroutineStart.DEFAULT,
