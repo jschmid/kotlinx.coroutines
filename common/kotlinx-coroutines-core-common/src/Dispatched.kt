@@ -67,7 +67,7 @@ internal object UndispatchedEventLoop {
 internal class DispatchedContinuation<in T>(
     @JvmField val dispatcher: CoroutineDispatcher,
     @JvmField val continuation: Continuation<T>
-) : Continuation<T> by continuation, DispatchedTask<T> {
+) : SchedulerTaskBase(), Continuation<T> by continuation, DispatchedTask<T> {
     @JvmField
     @Suppress("PropertyName")
     internal var _state: Any? = UNDEFINED
@@ -190,7 +190,7 @@ internal fun <T> Continuation<T>.resumeDirectWithException(exception: Throwable)
     else -> resumeWithException(exception)
 }
 
-internal interface DispatchedTask<in T> : Runnable {
+internal interface DispatchedTask<in T> : SchedulerTask {
     public val delegate: Continuation<T>
     public val resumeMode: Int get() = MODE_CANCELLABLE
 
@@ -223,6 +223,8 @@ internal interface DispatchedTask<in T> : Runnable {
             }
         } catch (e: Throwable) {
             throw DispatchException("Unexpected exception running $this", e)
+        } finally {
+            afterTask()
         }
     }
 }
