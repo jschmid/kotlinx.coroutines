@@ -204,6 +204,7 @@ internal interface DispatchedTask<in T> : SchedulerTask {
         (state as? CompletedExceptionally)?.cause
 
     public override fun run() {
+        val taskContext = this.taskContext
         try {
             val delegate = delegate as DispatchedContinuation<T>
             val continuation = delegate.continuation
@@ -224,7 +225,7 @@ internal interface DispatchedTask<in T> : SchedulerTask {
         } catch (e: Throwable) {
             throw DispatchException("Unexpected exception running $this", e)
         } finally {
-            afterTask()
+            afterTask(taskContext)
         }
     }
 }
